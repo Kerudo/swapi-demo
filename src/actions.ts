@@ -3,7 +3,7 @@ import {
   FETCH_SPECIFIC
 } from "./types"
 
-export const fetchPeople = (category: string) => (dispatch: any) => {
+export const fetchList = (category: string) => (dispatch: any) => {
   fetch("https://swapi.co/api/" + category, {
     method: "GET",
   })
