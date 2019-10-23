@@ -4,7 +4,7 @@ import {
 } from "./types"
 
 export const fetchList = (category: string) => (dispatch: any) => {
-  fetch("https://swapi.co/api/" + category, {
+  fetch("/api/" + category, {
     method: "GET",
   })
     .then(res => res.json())
