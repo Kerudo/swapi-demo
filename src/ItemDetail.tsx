@@ -5,8 +5,11 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
+import { fetchImage } from './actions'
+
 type ItemDetailProps = {
   displayFields: Array<string>,
+  fetchImage: any,
   history: any,
   list_items: Array<any>,
   location: any,
@@ -15,6 +18,10 @@ type ItemDetailProps = {
 }
 
 class ItemDetail extends React.Component<ItemDetailProps> {
+  componentDidMount() {
+    this.props.fetchImage("Luke Skywalker")
+  }
+
   render() {
     let displayFields : Array<object> = []
     let fields = this.props.displayFields.slice(1)
@@ -60,4 +67,4 @@ const mapStateToProps = (state: any, ownProps: any) => ({
   list_items: state.app.list_data.results
 });
 
-export default connect(mapStateToProps, {})(ItemDetail)
+export default connect(mapStateToProps, {fetchImage})(ItemDetail)
