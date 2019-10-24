@@ -1,26 +1,27 @@
+// package imports
 import React, { Suspense } from 'react';
 import { connect } from "react-redux"
 import Button from '@material-ui/core/Button';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps, Route } from 'react-router-dom';
 
+// local imports
 import './App.css';
 
+// lazy load imports
 const ItemList = React.lazy(() => import('./ItemList'));
 const ItemDetail = React.lazy(() => import('./ItemDetail'));
 
+// react-redux-router-mui snippet to make buttons work nicely with routes
 const link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
 ));
 
-const listDisplayFieldMap: any = {
-  people: "name",
-  planets: "name",
-  films: "title"
-}
-
-const detailDisplayFieldMap: any = {
+// define which api routes will be fetched and which fields will be shown
+// the first item in the array will be used as the field shown when displayed as a list
+// it will also be what shows up as the header for the detail view
+const fieldMap: any = {
   people: [
+    "name",
     "height",
     "mass",
     "hair_color",
@@ -29,10 +30,12 @@ const detailDisplayFieldMap: any = {
     "birth_year",
   ],
   planets: [
+    "name",
     "terrain",
     "population",
   ],
   films: [
+    "title",
     "director",
     "producer",
     "release_date",
@@ -67,14 +70,14 @@ class App extends React.Component {
             <Route path={"/:category/"} render={
               (props: any) => (
                 <Suspense fallback="">
-                  <ItemList key={props.match.params.category} {...props} displayField={listDisplayFieldMap[props.match.params.category]} />
+                  <ItemList key={props.match.params.category} {...props} displayField={fieldMap[props.match.params.category][0]} />
                 </Suspense>
               )
             } />
             <Route path={"/:category/:id/"} render={
               (props: any) => (
                 <Suspense fallback="">
-                  <ItemDetail key={props.match.params.category + props.match.params.id} {...props} displayFields={detailDisplayFieldMap[props.match.params.category]} />
+                  <ItemDetail key={props.match.params.category + props.match.params.id} {...props} displayFields={fieldMap[props.match.params.category]} />
                 </Suspense>
               )
             } />

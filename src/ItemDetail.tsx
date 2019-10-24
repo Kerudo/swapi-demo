@@ -8,7 +8,8 @@ import Grid from '@material-ui/core/Grid'
 class ItemDetail extends React.Component {
   render() {
     let displayFields : Array<object> = []
-    for (const field of (this.props as any).displayFields) {
+    let fields = (this.props as any).displayFields.slice(1)
+    for (const field of fields) {
       const id = (this.props as any).match.params.id
       // ugly nested ternary because we can sometimes render before the API has returned results
       const value = !(this.props as any).list_items
@@ -33,8 +34,9 @@ class ItemDetail extends React.Component {
         <Card>
           <CardContent>
             <Typography variant="h5" align="left" gutterBottom>
-              {!(this.props as any).list_items[(this.props as any).match.params.id] ? undefined : (this.props as any).list_items[(this.props as any).match.params.id]["name"]}
-              {!(this.props as any).list_items[(this.props as any).match.params.id] ? undefined : (this.props as any).list_items[(this.props as any).match.params.id]["title"]}
+              {!(this.props as any).list_items[(this.props as any).match.params.id]
+                ? undefined 
+                : (this.props as any).list_items[(this.props as any).match.params.id][(this.props as any).displayFields[0]]}
             </Typography>
             <Grid container direction="column" alignItems="flex-start" spacing={2}>
               { displayFields }
