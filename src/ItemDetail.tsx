@@ -3,15 +3,9 @@ import { connect } from "react-redux"
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 
 class ItemDetail extends React.Component {
-  constructor(props: object) {
-    super(props)
-  }
-
   render() {
     let displayFields : Array<object> = []
     for (const field of (this.props as any).displayFields) {

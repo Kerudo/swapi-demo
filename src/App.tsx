@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect } from "react-redux"
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
@@ -64,12 +64,20 @@ class App extends React.Component {
             </Button>
           </nav>
           <div className="content">
-            <Route path={"/:category/"} render={(props: any) => (
-              <ItemList key={props.match.params.category} {...props} displayField={listDisplayFieldMap[props.match.params.category]} />)
+            <Route path={"/:category/"} render={
+              (props: any) => (
+                <Suspense fallback="">
+                  <ItemList key={props.match.params.category} {...props} displayField={listDisplayFieldMap[props.match.params.category]} />
+                </Suspense>
+              )
             } />
-            <Route path={"/:category/:id/"} render={(props: any) => (
-              <ItemDetail key={props.match.params.category + props.match.params.id} {...props} displayFields={detailDisplayFieldMap[props.match.params.category]} />
-            )} />
+            <Route path={"/:category/:id/"} render={
+              (props: any) => (
+                <Suspense fallback="">
+                  <ItemDetail key={props.match.params.category + props.match.params.id} {...props} displayFields={detailDisplayFieldMap[props.match.params.category]} />
+                </Suspense>
+              )
+            } />
           </div>
         </div>
       </div>

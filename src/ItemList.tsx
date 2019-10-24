@@ -5,9 +5,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List'
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 const link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
@@ -15,11 +14,7 @@ const link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) =
 ));
 
 class ItemList extends React.Component {
-  constructor(props: object) {
-    super(props)
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     (this.props as any).fetchList((this.props as any).match.params.category)
   }
 

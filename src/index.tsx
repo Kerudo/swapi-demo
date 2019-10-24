@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import {
   createStore,
   applyMiddleware,
-  compose,
-  combineReducers
 } from 'redux';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
@@ -13,11 +11,7 @@ import * as serviceWorker from './serviceWorker';
 import createHistory from 'history/createBrowserHistory'
 import reducer from "./reducer"
 import thunk from "redux-thunk"
-import {
-  ConnectedRouter,
-  routerMiddleware,
-  push
-} from 'react-router-redux'
+import { routerMiddleware } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import theme from './theme'
 import { ThemeProvider } from '@material-ui/styles';
