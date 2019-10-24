@@ -1,6 +1,6 @@
 import {
   FETCH_LIST,
-  FETCH_SPECIFIC
+  RESET_LIST
 } from "./types"
 
 export const fetchList = (category: string) => (dispatch: any) => {
@@ -15,12 +15,8 @@ export const fetchList = (category: string) => (dispatch: any) => {
 }
 
 export const fetchSpecific = (category: string, index: number) => (dispatch: any) => {
-  fetch("https://swapi.co/api/" + category, {
-    method: "GET",
+  dispatch({
+    type: RESET_LIST,
+    payload: {}
   })
-    .then(res => res.json())
-    .then(data => dispatch({
-      type: FETCH_LIST,
-      payload: data
-    }))
 }

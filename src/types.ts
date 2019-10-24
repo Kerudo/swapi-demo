@@ -1,2 +1,2 @@
 export const FETCH_LIST = "FETCH_LIST"
-export const FETCH_SPECIFIC = "FETCH_SPECIFIC"
+export const RESET_LIST = "RESET_LIST"

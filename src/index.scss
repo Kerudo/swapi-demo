@@ -58,6 +58,15 @@ h2 {
   }
 }
 
+.content {
+  display: flex;
+  flex-direction: row;
+
+  &>* {
+    margin: 0 1.5rem;
+  }
+}
+
 // ***
 // All credit for this awesome background goes to user Angie on CodePen : https://codepen.io/amiangie/pen/RRdQAb
 // ***

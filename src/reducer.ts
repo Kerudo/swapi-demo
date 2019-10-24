@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 import {
   FETCH_LIST,
-  FETCH_SPECIFIC
+  RESET_LIST
 } from "./types"
 
 const initialState = {
@@ -19,10 +19,10 @@ function appReducer(state = initialState, action : any) : any {
         ...state,
         list_data: action.payload
       }
-    case FETCH_SPECIFIC:
+    case RESET_LIST:
       return {
         ...state,
-        specific_data: action.payload
+        list_data: action.payload
       }
     default:
       return state

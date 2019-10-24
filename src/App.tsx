@@ -7,15 +7,36 @@ import { Route } from 'react-router-dom';
 import './App.css';
 
 const ItemList = React.lazy(() => import('./ItemList'));
+const ItemDetail = React.lazy(() => import('./ItemDetail'));
 
 const link = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
 ));
 
 const listDisplayFieldMap: any = {
-  "people": "name",
-  "planets": "name",
-  "films": "title"
+  people: "name",
+  planets: "name",
+  films: "title"
+}
+
+const detailDisplayFieldMap: any = {
+  people: [
+    "height",
+    "mass",
+    "hair_color",
+    "skin_color",
+    "gender",
+    "birth_year",
+  ],
+  planets: [
+    "terrain",
+    "population",
+  ],
+  films: [
+    "director",
+    "producer",
+    "release_date",
+  ],
 }
 
 class App extends React.Component {
@@ -46,6 +67,9 @@ class App extends React.Component {
             <Route path={"/:category/"} render={(props: any) => (
               <ItemList key={props.match.params.category} {...props} displayField={listDisplayFieldMap[props.match.params.category]} />)
             } />
+            <Route path={"/:category/:id/"} render={(props: any) => (
+              <ItemDetail key={props.match.params.category + props.match.params.id} {...props} displayFields={detailDisplayFieldMap[props.match.params.category]} />
+            )} />
           </div>
         </div>
       </div>
