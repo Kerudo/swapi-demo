@@ -30,20 +30,18 @@ class ItemDetail extends React.Component {
       )
     }
     return (
-      <div className="ItemDetail">
-        <Card>
-          <CardContent>
-            <Typography variant="h5" align="left" gutterBottom>
-              {!(this.props as any).list_items[(this.props as any).match.params.id]
-                ? undefined 
-                : (this.props as any).list_items[(this.props as any).match.params.id][(this.props as any).displayFields[0]]}
-            </Typography>
-            <Grid container direction="column" alignItems="flex-start" spacing={2}>
-              { displayFields }
-            </Grid>
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardContent>
+          <Typography variant="h5" align="left" gutterBottom>
+            {!(this.props as any).list_items[(this.props as any).match.params.id]
+              ? undefined
+              : (this.props as any).list_items[(this.props as any).match.params.id][(this.props as any).displayFields[0]]}
+          </Typography>
+          <Grid container direction="column" alignItems="flex-start" spacing={2}>
+            { displayFields }
+          </Grid>
+        </CardContent>
+      </Card>
     )
   }
 }

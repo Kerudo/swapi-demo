@@ -70,14 +70,18 @@ class App extends React.Component {
             <Route path={"/:category/"} render={
               (props: any) => (
                 <Suspense fallback="">
-                  <ItemList key={props.match.params.category} {...props} displayField={fieldMap[props.match.params.category][0]} />
+                  <ItemList
+                    key={props.match.params.category} {...props}
+                    displayField={fieldMap[props.match.params.category][0]} />
                 </Suspense>
               )
             } />
             <Route path={"/:category/:id/"} render={
               (props: any) => (
                 <Suspense fallback="">
-                  <ItemDetail key={props.match.params.category + props.match.params.id} {...props} displayFields={fieldMap[props.match.params.category]} />
+                  <ItemDetail
+                    key={props.match.params.category + props.match.params.id} {...props}
+                    displayFields={fieldMap[props.match.params.category]} />
                 </Suspense>
               )
             } />

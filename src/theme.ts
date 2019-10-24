@@ -5,12 +5,15 @@ const theme = createMuiTheme({
     primary: {
       main: '#FFE81F',
     },
+    action: {
+      disabled: "rgba(255, 232, 31, 0.6)"
+    }
   },
   overrides: {
     MuiListItem: {
       button: {
         "&:hover": {
-          backgroundColor: "rgba(0, 0, 0, 0.28)",
+          backgroundColor: "rgba(0, 0, 0, 0.3)",
         }
       }
     },
@@ -30,7 +33,7 @@ const theme = createMuiTheme({
     },
     MuiCard: {
       root: {
-        background: "rgba(0, 0, 0, 0.2)",
+        background: "rgba(0, 0, 0, 0.4)",
         minWidth: "20rem",
       }
     },
@@ -42,6 +45,14 @@ const theme = createMuiTheme({
     MuiGrid: {
       item: {
         margin: "0 16px",
+      }
+    },
+    MuiButton: {
+      root: {
+        color: '#FFE81F',
+      },
+      outlined: {
+        backgroundColor: "rgba(0, 0, 0, 0.4)",
       }
     }
   },

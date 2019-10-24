@@ -3,8 +3,8 @@ import {
   RESET_LIST
 } from "./types"
 
-export const fetchList = (category: string) => (dispatch: any) => {
-  fetch("/api/" + category, {
+export const fetchList = (category: string, param: string = "") => (dispatch: any) => {
+  fetch("/api/" + category + "/" + param, {
     method: "GET",
   })
     .then(res => res.json())
