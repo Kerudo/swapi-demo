@@ -14,9 +14,9 @@ export const fetchList = (category: string) => (dispatch: any) => {
     }))
 }
 
-export const fetchSpecific = (category: string, index: number) => (dispatch: any) => {
+export const resetList = () => (dispatch: any) => {
   dispatch({
     type: RESET_LIST,
-    payload: {}
+    payload: {results: []}
   })
 }

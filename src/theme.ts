@@ -24,6 +24,9 @@ const theme = createMuiTheme({
         color: '#FFE81F',
         textTransform: "capitalize",
       },
+      gutterBottom: {
+        marginBottom: "0.7em",
+      },
     },
     MuiCard: {
       root: {

@@ -9,7 +9,6 @@ const initialState = {
   list_data: {
     results: []
   },
-  specific_data: {}
 }
 
 function appReducer(state = initialState, action : any) : any {
@@ -20,6 +19,7 @@ function appReducer(state = initialState, action : any) : any {
         list_data: action.payload
       }
     case RESET_LIST:
+      console.log("RESET_LIST")
       return {
         ...state,
         list_data: action.payload

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchList } from "./actions"
+import { fetchList, resetList } from "./actions"
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -23,12 +23,16 @@ class ItemList extends React.Component {
     (this.props as any).fetchList((this.props as any).match.params.category)
   }
 
+  componentWillUnmount() {
+    (this.props as any).resetList()
+  }
+
   render() {
     let listItems: Array<object> = []
     for (const index in (this.props as any).list_items) {
       const item = (this.props as any).list_items[index]
       listItems.push(
-        <ListItem key={item[(this.props as any).displayField]} component={link} to={"/" + (this.props as any).match.params.category + "/" + index + "/"} button>
+        <ListItem key={item[(this.props as any).displayField] + index} component={link} to={"/" + (this.props as any).match.params.category + "/" + index + "/"} button>
           <ListItemText color="primary" primary={item[(this.props as any).displayField]} />
         </ListItem>
       )
@@ -54,4 +58,4 @@ const mapStateToProps = (state: any, ownProps: any) => ({
   list_items: state.app.list_data.results
 });
 
-export default connect(mapStateToProps, {fetchList})(ItemList)
+export default connect(mapStateToProps, {fetchList, resetList})(ItemList)

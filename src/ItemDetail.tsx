@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchSpecific } from "./actions"
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -57,4 +56,4 @@ const mapStateToProps = (state: any, ownProps: any) => ({
   list_items: state.app.list_data.results
 });
 
-export default connect(mapStateToProps, {fetchSpecific})(ItemDetail)
+export default connect(mapStateToProps, {})(ItemDetail)
