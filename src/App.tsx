@@ -42,10 +42,18 @@ const fieldMap: any = {
   ],
 }
 
-class App extends React.Component {
+type AppProps = {
+  history: object,
+  location: object,
+  match: object,
+  staticContent: any,
+}
+
+class App extends React.Component<AppProps> {
   render () {
     return(
       <div className="App">
+        {/* Stars!! (components for the background)*/}
         <div className="stars small"></div>
         <div className="stars medium"></div>
         <div className="stars large"></div>
@@ -67,6 +75,13 @@ class App extends React.Component {
             </Button>
           </nav>
           <div className="content">
+            {/*
+              Since we rely on componentDidMount to trigger the data fetch, we need
+              to pass a unique key into the ItemList and ItemDetail components.
+              If we don't, they won't re-render when the route changes, they'll just
+              change props.
+              Thus, we need this sorta funky render instead of just using 'component'
+            */}
             <Route path={"/:category/"} render={
               (props: any) => (
                 <Suspense fallback="">

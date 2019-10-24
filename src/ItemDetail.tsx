@@ -5,18 +5,27 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
-class ItemDetail extends React.Component {
+type ItemDetailProps = {
+  displayFields: Array<string>,
+  history: any,
+  list_items: Array<any>,
+  location: any,
+  match: any,
+  staticContent: any
+}
+
+class ItemDetail extends React.Component<ItemDetailProps> {
   render() {
     let displayFields : Array<object> = []
-    let fields = (this.props as any).displayFields.slice(1)
+    let fields = this.props.displayFields.slice(1)
     for (const field of fields) {
-      const id = (this.props as any).match.params.id
+      const id = this.props.match.params.id
       // ugly nested ternary because we can sometimes render before the API has returned results
-      const value = !(this.props as any).list_items
+      const value = !this.props.list_items
         ? undefined
-        : !(this.props as any).list_items[id]
+        : !this.props.list_items[id]
           ? undefined
-          : (this.props as any).list_items[id][field]
+          : this.props.list_items[id][field]
 
       displayFields.push(
         <Grid item key={field}>
@@ -29,13 +38,14 @@ class ItemDetail extends React.Component {
         </Grid>
       )
     }
+
     return (
       <Card>
         <CardContent>
           <Typography variant="h5" align="left" gutterBottom>
-            {!(this.props as any).list_items[(this.props as any).match.params.id]
+            {!this.props.list_items[this.props.match.params.id]
               ? undefined
-              : (this.props as any).list_items[(this.props as any).match.params.id][(this.props as any).displayFields[0]]}
+              : this.props.list_items[this.props.match.params.id][this.props.displayFields[0]]}
           </Typography>
           <Grid container direction="column" alignItems="flex-start" spacing={2}>
             { displayFields }
